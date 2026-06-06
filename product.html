@@ -1,28 +1,233 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemuja Rahasia - Sheila On 7</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Product - Smart Grade Calculator</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#dbeafe,#eff6ff);
+            color:#1e40af;
+            text-align:center;
+            margin:0;
+            padding:20px;
+        }
+
+        ul{
+            list-style:none;
+            padding:0;
+        }
+
+        ul li{
+            display:inline;
+            margin:15px;
+        }
+
+        a{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        h1{
+            color:#2563eb;
+        }
+
+        .card{
+            background:white;
+            width:80%;
+            max-width:500px;
+            margin:20px auto;
+            padding:20px;
+            border-radius:20px;
+            box-shadow:0 4px 15px rgba(59,130,246,0.2);
+        }
+
+        input{
+            width:80%;
+            padding:10px;
+            margin:8px;
+            border:2px solid #bfdbfe;
+            border-radius:10px;
+        }
+
+        button{
+            padding:10px 20px;
+            border:none;
+            border-radius:10px;
+            background:#2563eb;
+            color:white;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .logo{
+            font-size:80px;
+        }
+
+        .hasil{
+            font-size:20px;
+            margin-top:10px;
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-    <header>
-        <h1>Aplikasi Penghitung Nilai</h1>
-       <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="design.html">Design Process</a></li>
-                <li><a href="product.html">Product</a></li>
-            </ul>
-    </header>
+<h1>Product</h1>
 
-    <p>Silakan lihat produk kami di <a href="https://colab.research.google.com/drive/1PThQitLQ6JWF3hUXRXT9u8iOvypiTXXl?usp=sharing">sini</a></p>
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="design.html">Design Process</a></li>
+    <li>Product</li>
+</ul>
 
-    <footer>
-        <p>NPD GROUP</p>
-    </footer>
+<div class="logo">🎓</div>
+
+<h1>Smart Grade Calculator</h1>
+
+<p>Calculate your grades easily 📚</p>
+
+<p>
+<a href="https://colab.research.google.com/drive/1PThQitLQ6JWF3hUXRXT9u8iOvypiTXXl?usp=sharing" target="_blank">
+<button>
+🐍 Lihat Source Code Python
+</button>
+</a>
+</p>
+
+<div class="card">
+
+    <h2>📝 Input Nilai</h2>
+
+    <input
+    type="number"
+    id="tugas"
+    placeholder="Masukkan Nilai Tugas">
+
+    <br>
+
+    <input
+    type="number"
+    id="ulangan"
+    placeholder="Masukkan Nilai Ulangan Harian">
+
+    <br>
+
+    <input
+    type="number"
+    id="ujian"
+    placeholder="Masukkan Nilai Ujian Akhir">
+
+    <br><br>
+
+    <button onclick="hitungNilai()">
+        Hitung Nilai
+    </button>
+
+</div>
+
+<div class="card">
+
+    <h2>📊 Hasil</h2>
+
+    <p class="hasil">
+        Nilai Akhir:
+        <span id="nilai">0</span>
+    </p>
+
+    <p class="hasil">
+        Grade:
+        <span id="grade">-</span>
+    </p>
+
+    <p class="hasil">
+        Status:
+        <span id="status">-</span>
+    </p>
+
+</div>
+
+<script>
+
+function hitungNilai(){
+
+    let tugas =
+    parseFloat(
+    document.getElementById("tugas").value
+    );
+
+    let ulangan =
+    parseFloat(
+    document.getElementById("ulangan").value
+    );
+
+    let ujian =
+    parseFloat(
+    document.getElementById("ujian").value
+    );
+
+    if(
+        isNaN(tugas) ||
+        isNaN(ulangan) ||
+        isNaN(ujian)
+    ){
+        alert("Isi semua nilai terlebih dahulu!");
+        return;
+    }
+
+    let nilai =
+    (0.3 * tugas) +
+    (0.3 * ulangan) +
+    (0.4 * ujian);
+
+    let grade;
+
+    if(nilai > 90){
+        grade = "A";
+    }
+    else if(nilai > 75){
+        grade = "B";
+    }
+    else if(nilai > 60){
+        grade = "C";
+    }
+    else if(nilai > 50){
+        grade = "D";
+    }
+    else{
+        grade = "E";
+    }
+
+    let status;
+
+    if(nilai > 75){
+        status = "LULUS 🎉";
+    }
+    else{
+        status = "REMEDIAL 📚";
+    }
+
+    document.getElementById("nilai")
+    .innerText =
+    nilai.toFixed(2);
+
+    document.getElementById("grade")
+    .innerText =
+    grade;
+
+    document.getElementById("status")
+    .innerText =
+    status;
+}
+
+</script>
 
 </body>
 </html>
